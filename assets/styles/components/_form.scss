@@ -1,0 +1,49 @@
+.proj_form {
+  margin: auto;
+  width: 45vw;
+  & .title {
+    margin: 0.5rem 0px;
+    color: var(--mainColor);
+    text-transform: uppercase;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+  }
+  & .form_row {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+    &.start {
+      justify-content: flex-start;
+      flex-direction: row;
+    }
+    &.end {
+      justify-content: flex-end;
+      flex-direction: row;
+    }
+
+    &_item {
+      display: flex;
+      flex-direction: column;
+      width: 49%;
+      &.row {
+        flex-direction: row;
+        & input {
+          margin-right: 1rem;
+        }
+      }
+      & input:not(input[type="radio"]):not(input[type="checkbox"]) {
+        width: 100%;
+        border: none;
+        border-bottom: 1px solid rgba(0, 0, 0, 0);
+        transition: 0.2s;
+        outline: none;
+        &:focus {
+          border-bottom: 1px solid rgba(0, 0, 0, 0.7);
+        }
+      }
+    }
+  }
+}
