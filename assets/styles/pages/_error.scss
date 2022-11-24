@@ -1,0 +1,21 @@
+.proj_error {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  & span {
+    font-size: 5em;
+    color: var(--main-color-1);
+    font-weight: 750;
+  }
+  & a {
+    color: var(--heading-color);
+    font-size: 0.85em;
+    transition: 0.2s;
+    &:hover {
+      color: var(--main-color-1);
+    }
+  }
+}

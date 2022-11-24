@@ -1,0 +1,33 @@
+.proj_header {
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 100;
+  background: var(--whiteColor);
+  box-shadow: var(--box-shadow);
+  min-height: 70px;
+  &_left {
+    display: flex;
+    align-items: center;
+    & * {
+      margin: 10px;
+      & *:first-child {
+        margin-left: 0;
+      }
+      & *:last-child {
+        margin-right: 0;
+      }
+    }
+    & img {
+      height: 70px;
+    }
+    & h1 {
+      color: var(--blackColor);
+    }
+  }
+}

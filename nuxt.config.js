@@ -13,12 +13,18 @@ export default {
       { name: 'format-detection', content: 'telephone=no' }
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
+      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+      { rel: 'preconnect', ty: "normal", name: "Google fonts", href: 'https://fonts.googleapis.com' },
+      { rel: 'preconnect', ty: "normal", name: "Google fonts static", href: 'https://fonts.gstatic.com' },
+      { rel: 'stylesheet', ty: "normal", name: "google fonts families", href: 'https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap'},
+      { rel: 'stylesheet', ty: "normal", name: "Unicons", href: 'https://unicons.iconscout.com/release/v3.0.1/css/line.css'},
+      { rel: 'stylesheet', ty: "normal", name: "Boxicons", href: 'https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css'}
     ]
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: [
+    "~/assets/styles/main.scss"
   ],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
@@ -42,6 +48,12 @@ export default {
     '@nuxtjs/pwa',
     // https://go.nuxtjs.dev/content
     '@nuxt/content',
+
+    '@nuxtjs/i18n',
+
+    '@nuxtjs/sitemap',
+
+    '@nuxtjs/auth-next'
   ],
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
@@ -59,6 +71,12 @@ export default {
 
   // Content module configuration: https://go.nuxtjs.dev/config-content
   content: {},
+
+  sitemap: {
+    hostname: process.env.SITEMAP_HOSTNAME,
+    gzip: true,
+    exclude: ['/secret', '/admin/**']
+  },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
