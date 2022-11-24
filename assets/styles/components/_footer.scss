@@ -1,0 +1,21 @@
+.proj_footer {
+  margin-top: 5rem;
+  background: var(--blackColor);
+  color: var(--whiteColor);
+  display: flex;
+  flex-direction: column;
+  padding: 2rem 0px 1rem 0rem;
+  &_top {
+    padding-left: 5rem;
+    display: flex;
+    flex-direction: column;
+    & a {
+      text-decoration: underline;
+      color: var(--whiteColor);
+    }
+  }
+  &_bottom {
+    display: flex;
+    justify-content: center;
+  }
+}

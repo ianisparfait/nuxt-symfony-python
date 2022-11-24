@@ -1,8 +1,5 @@
 <template>
   <div class="container_page proj_home">
-    <div class="header">
-      <Header />
-    </div>
     <section class="proj_home_hero">
       <img :src="require('./../assets/resources/images/home/hero.jpg')" alt="3 voitures alignée de la marque Maserrati">
       <div class="proj_home_hero_text">
