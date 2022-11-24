@@ -1,5 +1,20 @@
 .proj_home {
   &_hero {
-    height: 150px;
+    position: relative;
+    & img {
+      width: 100%;
+    }
+    &_text {
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translate(-50%, 0px);
+      background: var(--whiteColor);
+      padding: 10px 20px;
+      color: var(--blackColor);
+      & .arrow {
+        color: var(--mainColor);
+      }
+    }
   }
 }

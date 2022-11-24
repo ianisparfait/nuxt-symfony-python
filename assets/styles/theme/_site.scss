@@ -14,6 +14,7 @@ body {
   scroll-behavior: smooth;
   background: var(--whiteColor);
   color: var(--blackColor);
+  font-size: 0.85em;
 }
 body.darkmode {
   --specialGrey: #18191a;
@@ -64,5 +65,10 @@ ul {
   list-style: none;
 }
 .container_page {
+  --paddingTop: 80px;
   min-height: 100vh;
+  padding-top: var(--paddingTop);
+  & .proj_header {
+    height: calc(var(--paddingTop));
+  }
 }
