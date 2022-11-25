@@ -24,9 +24,11 @@
     "moment": "^2.29.4",
     "node-sass": "^8.0.0",
     "nuxt": "^2.15.8",
+    "storybook": "file:.yalc/storybook",
     "vue": "^2.7.10",
     "vue-server-renderer": "^2.7.10",
-    "vue-template-compiler": "^2.7.10"
+    "vue-template-compiler": "^2.7.10",
+    "yalc": "^1.0.0-pre.53"
   },
   "devDependencies": {
     "@babel/eslint-parser": "^7.19.1",

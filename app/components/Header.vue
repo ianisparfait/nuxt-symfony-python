@@ -17,9 +17,16 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
+import Vue from 'vue';
+
+// @ts-ignore
+import Button from "storybook/src/lib-components/Button.vue";
+
 export default Vue.extend({
   name: 'Header',
+  components: {
+    Button,
+  },
   data() {
     return {
       title: 'Header'

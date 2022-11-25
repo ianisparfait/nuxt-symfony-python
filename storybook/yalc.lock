@@ -1,0 +1,9 @@
+{
+  "version": "v1",
+  "packages": {
+    "storybook": {
+      "signature": "dfe785f7165ff75b828687273f1e8821",
+      "file": true
+    }
+  }
+}
