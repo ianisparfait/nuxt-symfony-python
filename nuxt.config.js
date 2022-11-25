@@ -78,6 +78,10 @@ export default {
     exclude: ['/secret', '/admin/**']
   },
 
+  storybook: {
+
+  },
+
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
   }
