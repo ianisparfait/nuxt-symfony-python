@@ -23,6 +23,15 @@
       justify-content: flex-end;
       flex-direction: row;
     }
+    &.full {
+      width: 100%;
+      & .form_row_item {
+        width: 100%;
+        & * {
+          width: 100%;
+        }
+      }
+    }
 
     &_item {
       display: flex;

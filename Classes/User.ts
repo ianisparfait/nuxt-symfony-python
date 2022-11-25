@@ -14,4 +14,11 @@ type User = {
   phone: string;
 };
 
+type UserLogin = {
+  email: string;
+  password: string;
+};
+
 export default User;
+
+export { UserLogin };

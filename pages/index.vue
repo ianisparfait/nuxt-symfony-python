@@ -59,7 +59,7 @@
           <label for="licence">J'atteste que je possède un permis de conduire valide</label>
         </div>
       </div>
-      <div class="form_row end" @click="validateEmail">
+      <div class="form_row end" @click="validEmail">
         <Button
           :title="'Demander mon inscription'"
           :isLink="false"
@@ -76,6 +76,8 @@
 import Vue from 'vue';
 
 import User from '@/Classes/User';
+
+import { validateEmail } from '@/assets/typescript/utils';
 
 export default Vue.extend({
   name: 'Home',
@@ -100,12 +102,9 @@ export default Vue.extend({
     }
   },
   methods: {
-    validateEmail(): void {
-      if (!/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(this.user["email"])) {
-        this.errorMessage = 'Entrez une adresse email valide';
-      } else {
-        this.errorMessage = '';
-      }
+    validEmail(): void {
+      if (validateEmail(this.user["email"])) this.errorMessage = "Entrez une adresse email valide";
+      else this.errorMessage = "";
     },
   }
 })

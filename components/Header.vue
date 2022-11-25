@@ -8,8 +8,9 @@
       <Button
         :title="'Connexion admin'"
         :isLink="true"
-        :hrefLink="'/admin'"
+        :hrefLink="'/connexion'"
         :isWhite="false"
+        :isExternal="false"
       />
     </div>
   </div>

@@ -1,0 +1,24 @@
+.proj_connexion {
+  display: flex;
+  & .wrapper {
+    width: 45vw;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100%;
+    padding-bottom: 20vh;
+    & .return {
+      transition: 0.2s;
+      cursor: pointer;
+      color: var(--blackColor);
+      margin-bottom: 1.5rem;
+      & i {
+        color: var(--mainColor);
+      }
+      &:hover {
+        color: var(--mainColor);
+      }
+    }
+  }
+}
