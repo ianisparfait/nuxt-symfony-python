@@ -18,7 +18,7 @@ La solution la plus simple qui s'est présentée à moi était donc de créer un
 [Nuxtjs](https://nuxtjs.org/) est basé sur Vue, il est donc nécessaire de connaître les bases de Vuejs pour pouvoir comprendre le projet.
 
 ### Pourquoi ?
-##### Entre conviction personnelle et tests de benchmark.
+#### Entre conviction personnelle et tests de benchmark.
 React est, à tort, le framework aujourd'hui le plus utilisé dans le monde professionel. Je dis à tort pour deux raisons principales;
 
 La puissance ainsi que la facilité d'apprentissage. Effectivement, d'après [JS Benchmark](https://krausest.github.io/js-framework-benchmark/) React est en dessous des performances annoncé pour Vue. De nombreux article Medium ont également démontré la capacité de Vue à faire mieux que son concurrent.
