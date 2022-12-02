@@ -64,6 +64,8 @@
           :title="'Demander mon inscription'"
           :isLink="false"
           :isWhite="false"
+          :hrefLink="''"
+          :isExternal="false"
         />
       </div>
 
@@ -79,8 +81,14 @@ import User from '@/Classes/User';
 
 import { validateEmail } from '@/assets/typescript/utils';
 
+// @ts-ignore
+import Button from "storybook/src/lib-components/Button.vue";
+
 export default Vue.extend({
   name: 'Home',
+  components: {
+    Button,
+  },
   data() {
     return {
       errorMessage: "",
