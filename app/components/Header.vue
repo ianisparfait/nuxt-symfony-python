@@ -5,7 +5,7 @@
       <h1>RIDE</h1>
     </div>
     <div class="proj_header_right">
-      <Button
+      <ButtonSample
         :title="'Connexion admin'"
         :isLink="true"
         :hrefLink="'/connexion'"
@@ -20,12 +20,12 @@
 import Vue from 'vue';
 
 // @ts-ignore
-import Button from "storybook/src/lib-components/Button.vue";
+import ButtonSample from "storybook/src/lib-components/Button.vue";
 
 export default Vue.extend({
   name: 'Header',
   components: {
-    Button,
+    ButtonSample,
   },
   data() {
     return {
