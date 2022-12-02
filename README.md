@@ -25,6 +25,17 @@ La puissance ainsi que la facilité d'apprentissage. Effectivement, d'après [JS
 
 Pour l'apprentissage, il est inconsevable que React soit priviligié. Vue reposant sur le système de base HTML/JS avec son système de templating transparent et sa partie script. Bien que les deux parties soit dans le même fichier (ce qui est également le cas de React), dans Vue, la partie script est à part entière et n'a pas besoin d'éxister pour que pouvoir lancer un projet vuejs.
 
+### Retrieve project
+Run ``` yalc publish --private ``` from /storybook
+
+Run ``` yalc add storybook ``` in /app
+
+Run ``` npm install ``` in /storybook
+
+Run ``` npm install ``` in /app
+
+Run ``` npm run dev ``` in /app
+
 ### Run le projet & updated storybook
 Run ``` yalc publish --private  ``` from /storybook
 
