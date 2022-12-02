@@ -28,11 +28,11 @@ Pour l'apprentissage, il est inconsevable que React soit priviligié. Vue reposa
 ### Retrieve project
 Run ``` yalc publish --private ``` from /storybook
 
-Run ``` yalc add storybook ``` in /app
-
 Run ``` npm install ``` in /storybook
 
 Run ``` npm install ``` in /app
+
+Run ``` yalc add storybook ``` in /app
 
 Run ``` npm run dev ``` in /app
 
