@@ -92,3 +92,7 @@ sw.*
 # Storybook
 .nuxt-storybook
 storybook-static
+
+# Package.json
+package.json
+/package.json

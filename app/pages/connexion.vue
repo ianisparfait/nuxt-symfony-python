@@ -34,8 +34,8 @@
 
 <script lang="ts">
 import Vue from 'vue';
-import { validateEmail } from '~/assets/typescript/utils';
-import { UserLogin } from '~/Classes/User';
+import { validateEmail } from '@/assets/typescript/utils';
+import { UserLogin } from '@/Classes/User';
 
 export default Vue.extend({
   name: "Connexion",
@@ -54,16 +54,16 @@ export default Vue.extend({
       else this.errorMessage = "";
     },
     async login() {
-      try {
-        const response = await this.$axios.post("/api/login", {
-          email: this.user["email"],
-          password: this.user["password"],
-        });
-        this.$store.commit("setToken", response.data.token);
-        this.$router.push("/");
-      } catch (error) {
-        console.log(error);
-      }
+      // try {
+      //   const response = await this.$axios.post("/api/login", {
+      //     email: this.user["email"],
+      //     password: this.user["password"],
+      //   });
+      //   this.$store.commit("setToken", response.data.token);
+      //   this.$router.push("/");
+      // } catch (error) {
+      //   console.log(error);
+      // }
     },
     backHistory() {
       this.$router.go(-1);

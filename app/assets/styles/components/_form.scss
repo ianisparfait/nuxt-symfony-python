@@ -55,4 +55,8 @@
       }
     }
   }
+
+  &.responsive {
+    background: var(--mainColor);
+  }
 }

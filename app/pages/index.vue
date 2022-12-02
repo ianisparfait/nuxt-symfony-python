@@ -10,7 +10,7 @@
         </p>
       </div>
     </section>
-    <div class="proj_form form_register">
+    <div :class="true ? `proj_form form_register` : 'proj_form form_register responsive' ">
       <h2 class="title">Inscription</h2>
       <div style="margin: 0.5rem 0px;">Je suis:</div>
       <div class="form_row">
