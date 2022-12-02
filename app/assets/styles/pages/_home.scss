@@ -16,6 +16,9 @@
       & .arrow {
         color: var(--mainColor);
       }
+      &.responsive {
+        width: 85vw;
+      }
     }
   }
 }

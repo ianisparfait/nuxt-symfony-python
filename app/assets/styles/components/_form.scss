@@ -57,6 +57,13 @@
   }
 
   &.responsive {
-    background: var(--mainColor);
+    width: 85vw;
+    & .form_row {
+      display: flex;
+      flex-direction: column;
+      & *:not(input[type="radio"]):not(input[type="checkbox"]) {
+        width: 100%;
+      }
+    }
   }
 }

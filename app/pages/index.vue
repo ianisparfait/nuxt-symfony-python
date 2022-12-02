@@ -1,8 +1,8 @@
 <template>
-  <div class="container_page proj_home">
+  <div class="container_page proj_home" :style="isMobile ? '--paddingTop: 120px;' : '--paddingTop: 80px;'">
     <section class="proj_home_hero">
       <img :src="require('./../assets/resources/images/home/hero.jpg')" alt="3 voitures alignée de la marque Maserrati">
-      <div class="proj_home_hero_text">
+      <div :class="isMobile ? 'proj_home_hero_text responsive' : 'proj_home_hero_text'">
         <p>
           <span class="arrow">▷</span> Depuis 2008, RIDE, agence de location de voitures de luxe propose ses services partout en France
           (Paris, Monaco, Nice, Cannes, Saint-Tropez, Courchevel, Saint-Moritz...).
@@ -10,7 +10,7 @@
         </p>
       </div>
     </section>
-    <div :class="true ? `proj_form form_register` : 'proj_form form_register responsive' ">
+    <div :class="isMobile ? `proj_form form_register responsive` : 'proj_form form_register' ">
       <h2 class="title">Inscription</h2>
       <div style="margin: 0.5rem 0px;">Je suis:</div>
       <div class="form_row">
@@ -91,6 +91,7 @@ export default Vue.extend({
   },
   data() {
     return {
+      isMobile: false,
       errorMessage: "",
       user: <User>{
         id: Math.random(),
@@ -108,6 +109,11 @@ export default Vue.extend({
         isBanned: false,
       }
     }
+  },
+  mounted() {
+    this.$nextTick(() => {
+      this.isMobile = Math.min(window.screen.width, window.screen.height) < 768 || navigator.userAgent.indexOf("Mobi") > -1;
+    });
   },
   methods: {
     validEmail(): void {
