@@ -47,8 +47,6 @@ export default {
     // https://go.nuxtjs.dev/content
     '@nuxt/content',
 
-    '@nuxtjs/sitemap',
-
     '@nuxtjs/device'
   ],
 
@@ -61,12 +59,6 @@ export default {
 
   // Content module configuration: https://go.nuxtjs.dev/config-content
   content: {},
-
-  sitemap: {
-    hostname: process.env.SITEMAP_HOSTNAME,
-    gzip: true,
-    exclude: ['/secret', '/admin/**']
-  },
 
   storybook: {},
 

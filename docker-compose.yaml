@@ -1,0 +1,21 @@
+version: "1.0"
+services:
+  nuxt-app:
+    build: ./
+    container_name: nuxt-final-project
+    ports:
+      - "3000:3000"
+    command: "npm run start"
+    networks:
+      - nuxt-network
+  storybook:
+    build: ./
+    container_name: storybook-final-project
+    ports:
+      - "6006:6006"
+    command: "npm run serve"
+    networks:
+      - nuxt-network
+networks:
+  nuxt-network:
+    driver: bridge

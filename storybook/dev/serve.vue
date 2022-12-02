@@ -14,5 +14,17 @@ export default Vue.extend({
 <template>
   <div id="app">
     <storybook-sample />
+    <button-sample
+      :title="'Button sample'"
+      :isLink="false"
+      :isWhite="false"
+    />
+    <button-sample
+      :title="'Button link sample to google.com'"
+      :isLink="true"
+      :hrefLink="'https://google.com'"
+      :isExternal="true"
+      :isWhite="true"
+    />
   </div>
 </template>

@@ -4,9 +4,11 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
-export default Vue.extend({
-  name: 'Button',
+import Vue from 'vue';
+import "./../../assets/utilities.scss";
+
+export default /*#__PURE__*/Vue.extend({
+  name: 'ButtonSample',
   props: {
     title: {
       type: String,
