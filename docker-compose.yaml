@@ -1,21 +1,61 @@
-version: "1.0"
+version: "3.8"
 services:
-  nuxt-app:
-    build: ./
-    container_name: nuxt-final-project
-    ports:
-      - "3000:3000"
-    command: "npm run start"
+  # PHP service
+  user:
+    build: ./back
+    container_name: service-user
+    working_dir: /var/www/
+    volumes:
+      - ./user:/var/www
+      - ./user/vendor:/var/www/vendor
     networks:
-      - nuxt-network
-  storybook:
-    build: ./
-    container_name: storybook-final-project
-    ports:
-      - "6006:6006"
-    command: "npm run serve"
+      - app-network
+
+  proxy:
+    build: ./proxy
+    container_name: service-proxy
+    working_dir: /var/www/
+    volumes:
+      - ./proxy:/var/www
     networks:
-      - nuxt-network
+      - app-network
+    ports:
+      - 8000:8000
+
+  # MySQL database service
+  db:
+    image: mysql:5.7
+    container_name: mysql-db
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: toor
+      MYSQL_DATABASE: lesson
+      MYSQL_USER: admin
+      MYSQL_PASSWORD: admin
+    networks:
+      - app-network
+
+  # Nginx service
+  nginx:
+    image: nginx:alpine
+    container_name: php-nginx
+    volumes:
+      - ./user:/var/www
+      - ./nginx/conf.d/:/etc/nginx/conf.d/
+    networks:
+      - app-network
+
+  phpmyadmin:
+    image: phpmyadmin
+    ports:
+      - 8080:80
+    environment:
+      - PMA_ARBITRARY=1
+      - PMA_HOST=db
+    networks:
+      - app-network
+
 networks:
-  nuxt-network:
+  app-network:
     driver: bridge
