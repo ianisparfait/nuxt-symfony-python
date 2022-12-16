@@ -2,26 +2,18 @@
 
 namespace App\DataFixtures;
 
-use App\Entity\Role;
 use App\Entity\User;
-use App\Repository\RoleRepository;
 use Doctrine\Persistence\ObjectManager;
-use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 class AppFixtures extends Fixture
 {
+    protected UserPasswordHasherInterface $password_hasher;
 
-    protected UserPasswordHasherInterface $passwordHasher;
-    protected RoleRepository $roles_repo;
-    protected EntityManagerInterface $objectManager;
-
-    public function __construct(UserPasswordHasherInterface $passwordHasher, RoleRepository $roles_repo, EntityManagerInterface $objectManager)
+    public function __construct(UserPasswordHasherInterface $password_hasher)
     {
-        $this->passwordHasher = $passwordHasher;
-        $this->roles_repo = $roles_repo;
-        $this->objectManager = $objectManager;
+        $this->password_hasher = $password_hasher;
     }
 
     public function load(ObjectManager $manager)
@@ -31,30 +23,17 @@ class AppFixtures extends Fixture
             'ROLE_ADMIN',
             'ROLE_SUPER_ADMIN'
         ];
-        $names = [
-            'Utitlisateur',
-            'Administrateur',
-            'Super Administrateur'
-        ];
 
         foreach ($roles as $key => $role) {
-            $role = new Role();
             $user = new User();
+            $user->setEmail('user' . $key .'@gmail.com');
 
-            $role->setName($names[$key]);
-            $role->setValue($roles[$key]);
+            $plainTextPassword = 'password' . $key;
+            $hasher = $this->password_hasher->hashPassword($user, $plainTextPassword);
+            $user->setPassword($hasher);
 
-            $user->setEmail("user@$key.com");
-            $plaintextPassword = "password$key";
-
-            $hashedPassword = $this->passwordHasher->hashPassword(
-                $user,
-                $plaintextPassword
-            );
-            $user->setPassword($hashedPassword);
             $user->setRoles([$role]);
 
-            $manager->persist($role);
             $manager->persist($user);
         }
 
