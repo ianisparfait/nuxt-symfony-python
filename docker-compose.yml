@@ -1,7 +1,7 @@
 version: "3.8"
 services:
   # PHP service
-  user:
+  back:
     build: ./back
     container_name: service-user
     working_dir: /var/www/
