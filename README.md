@@ -30,7 +30,7 @@ Run `docker-compose up` to build and run all services.
 
 ### Storybook
 Retrieve project
-Run yalc publish --private from /storybook
+Run `yalc publish --private` from /storybook
 
 Run `npm install` in /storybook
 
