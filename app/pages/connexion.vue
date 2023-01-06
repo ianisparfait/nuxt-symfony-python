@@ -17,7 +17,7 @@
         </div>
         <div class="form_row full">
           <div class="form_row_item">
-            <Button
+            <ButtonSample
               :title="'Se connecter'"
               :isLink="false"
               :isExternal="false"
@@ -34,11 +34,17 @@
 
 <script lang="ts">
 import Vue from 'vue';
-import { validateEmail } from '@/assets/typescript/utils';
-import { UserLogin } from '@/Classes/User';
+
+import { validateEmail } from './../assets/typescript/utils';
+import { UserLogin } from './../Classes/User';
+
+import ButtonSample from "storybook/src/lib-components/button-sample.vue";
 
 export default Vue.extend({
   name: "Connexion",
+  components: {
+    ButtonSample,
+  },
   data() {
     return {
       errorMessage: "",

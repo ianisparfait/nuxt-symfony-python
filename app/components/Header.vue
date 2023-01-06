@@ -19,8 +19,7 @@
 <script lang="ts">
 import Vue from 'vue';
 
-// @ts-ignore
-import ButtonSample from "storybook/src/lib-components/Button.vue";
+import ButtonSample from "storybook/src/lib-components/button-sample.vue";
 
 export default Vue.extend({
   name: 'Header',

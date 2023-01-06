@@ -16,7 +16,6 @@
     "@nuxtjs/device": "^3.0.0",
     "@nuxtjs/pwa": "^3.3.5",
     "@nuxtjs/sitemap": "^2.4.0",
-    "axios": "^0.27.2",
     "core-js": "^3.25.3",
     "moment": "^2.29.4",
     "node-sass": "^8.0.0",

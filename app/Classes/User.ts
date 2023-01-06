@@ -1,4 +1,4 @@
-type User = {
+interface User {
   id: number;
   name: string;
   firstname: string;
@@ -14,11 +14,10 @@ type User = {
   phone: string;
 };
 
-type UserLogin = {
+interface UserLogin {
   email: string;
   password: string;
 };
 
 export default User;
-
-export { UserLogin };
+export { UserLogin, User };

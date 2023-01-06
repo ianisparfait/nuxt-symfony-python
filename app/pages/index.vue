@@ -60,7 +60,7 @@
         </div>
       </div>
       <div class="form_row end" @click="validEmail">
-        <Button
+        <ButtonSample
           :title="'Demander mon inscription'"
           :isLink="false"
           :isWhite="false"
@@ -77,17 +77,16 @@
 <script lang="ts">
 import Vue from 'vue';
 
-import User from '@/Classes/User';
+import User from './../Classes/User';
 
-import { validateEmail } from '@/assets/typescript/utils';
+import { validateEmail } from './../assets/typescript/utils';
 
-// @ts-ignore
-import Button from "storybook/src/lib-components/Button.vue";
+import ButtonSample from "storybook/src/lib-components/button-sample.vue";
 
 export default Vue.extend({
   name: 'Home',
   components: {
-    Button,
+    ButtonSample,
   },
   data() {
     return {
