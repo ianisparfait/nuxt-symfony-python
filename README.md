@@ -27,3 +27,22 @@ Pour l'apprentissage, il est inconsevable que React soit priviligié. Vue reposa
 
 ### Use docker
 Run `docker-compose up` to build and run all services.
+
+### Storybook
+Retrieve project
+Run yalc publish --private from /storybook
+
+Run `npm install` in /storybook
+
+Run `npm install` in /app
+
+Run `yalc add storybook` in /app
+
+Run `npm run dev` in /app
+
+### Run le projet & updated storybook
+Run `yalc publish --private`  from /storybook
+
+Run `yalc update storybook` in /app
+
+And then, run npm run dev to see changements in your application
