@@ -2,10 +2,12 @@
 
 namespace App\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\Response;
+use App\Repository\UserRepository;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 /**
  * @Route("/api/user", name="app_user_api")
@@ -13,6 +15,13 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class UserApiController extends AbstractController
 {
+
+    private UserRepository $user_r;
+
+    public function __construct(UserRepository $user_r) {
+        $this->user_r = $user_r;
+    }
+
     /**
      * @Route("/", methods={"GET"})
      */
@@ -23,6 +32,16 @@ class UserApiController extends AbstractController
             'user' => $user->getUserIdentifier(),
             'roles' => $user->getRoles()]
         );
+    }
+
+    /**
+     * Route("s", name="_all", methods={"GET"})
+     */
+    public function getAll(): JsonResponse
+    {
+        $users = $this->user_r->findAll();
+
+        return $this->json($users);
     }
 
     /**
