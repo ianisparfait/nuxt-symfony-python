@@ -9,7 +9,7 @@ def main():
     global already_guessed
     global length
     global play_game
-    words_to_guess = ["accompli"]
+    words_to_guess = ["accompli", "salut", "velo", "bisous", "elastique"]
     word = random.choice(words_to_guess)
     length = len(word)
     count = 0
