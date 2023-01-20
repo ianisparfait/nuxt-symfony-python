@@ -1,13 +1,15 @@
-from flask import Flask, jsonify, request
+from flask import Flask
+from models import db, Car
+from routes import init_routes
 import json
 
 app = Flask(__name__)
+app.config['SQLALCHEMY_DATABASE_URI'] = "mysql://admin:admin@db:3306/symfony_authapi"
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+db.init_app(app)
 
-@app.route("/", methods=["GET"])
-def hello():
-    return jsonify({"Hello": "World"})
+@app.before_first_request
+def create_table():
+    db.create_all()
 
-@app.route("/add", methods=['POST'])
-def add():
-    data = json.loads(request.data)
-    return jsonify(data["a"] + data["b"])
+init_routes(app)

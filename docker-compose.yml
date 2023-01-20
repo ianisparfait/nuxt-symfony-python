@@ -43,7 +43,7 @@ services:
       - "3306:3306"
     environment:
       MYSQL_ROOT_PASSWORD: toor
-      MYSQL_DATABASE: lesson
+      MYSQL_DATABASE: symfony_authapi
       MYSQL_USER: admin
       MYSQL_PASSWORD: admin
     networks:
