@@ -16,6 +16,14 @@ import {
   URL_API_BACK,
   URL_API_UserInfo,
   URL_API_UserLogin,
+  URL_API_GET_FUTURE_USERS,
+  ENDPOINT_SERVICE_GET_FUTURE_USER,
+  ENDPOINT_SERVICE_POST_FUTURE_USER,
+  URL_API_POST_FUTURE_USER,
+  URL_API_GET_ALL_USERS,
+  ENDPOINT_SERVICE_GET_ALL_USER,
+  URL_API_POST_VALID_FUTURE_USER,
+  ENDPOINT_SERVICE_POST_VALID_FUTURE_USER,
 } from "./../endpoints";
 
 const Endpoints = (app: Express): void => {
@@ -45,15 +53,37 @@ const Endpoints = (app: Express): void => {
       .catch((onErrored) => res.send(onErrored.response.data));
   });
 
-  // Check if role is equal than the body post => Exemple: ( {"roles": "ROLE_USER"} ).
-  // Return true or false.
-  app.post(URL_API_CheckRole, (req: { body: { role: string; }; header: (arg0: string) => any; }, res: { send: (arg0: AxiosResponse<any, any>) => void; }): void => {
-    const body: { role: string } = req.body;
-    const token = req.header("Authorization");
+  // List all future users.
+  app.get(URL_API_GET_FUTURE_USERS, (req: { header: (arg0: string) => any; }, res: { send: (arg0: AxiosResponse<any, any>) => void; }) => {
+    axios
+      .get(ENDPOINT_SERVICE_GET_FUTURE_USER, {
+        headers: {
+          Authorization: req.header("Authorization"),
+        },
+      })
+      .then((response: AxiosResponse): void => {
+        res.send(response.data);
+      })
+      .catch((error: AxiosError): void => {
+        console.error("Error: " + error);
+        res.send(error.response.data as AxiosResponse);
+      });
+  });
 
-    Roles(body.role, token)
-      .then((onfulfilled: AxiosResponse): void => {
-        res.send(onfulfilled);
+  // List all users.
+  app.get(URL_API_GET_ALL_USERS, (req: { header: (arg0: string) => any; }, res: { send: (arg0: AxiosResponse<any, any>) => void; }) => {
+    axios
+      .get(ENDPOINT_SERVICE_GET_ALL_USER, {
+        headers: {
+          Authorization: req.header("Authorization"),
+        },
+      })
+      .then((response: AxiosResponse): void => {
+        res.send(response.data);
+      })
+      .catch((error: AxiosError): void => {
+        console.error("Error: " + error);
+        res.send(error.response.data as AxiosResponse);
       });
   });
 
@@ -68,6 +98,58 @@ const Endpoints = (app: Express): void => {
       console.log(onrejected.response.data)
       res.send(onrejected.response.data);
     });
+  });
+
+  // Check if role is equal than the body post => Exemple: ( {"roles": "ROLE_USER"} ).
+  // Return true or false.
+  app.post(URL_API_CheckRole, (req: { body: { role: string; }; header: (arg0: string) => any; }, res: { send: (arg0: AxiosResponse<any, any>) => void; }): void => {
+    const body: { role: string } = req.body;
+    const token = req.header("Authorization");
+
+    Roles(body.role, token)
+      .then((onfulfilled: AxiosResponse): void => {
+        res.send(onfulfilled);
+      });
+  });
+
+  // Ask for registration.
+  // Set into "FutureUser" table.
+  app.post(URL_API_POST_FUTURE_USER, (req: { body: { email: string; }; header: (arg0: string) => any; }, res: { send: (arg0: AxiosResponse<any, any>) => void; }) => {
+    axios
+      .post(ENDPOINT_SERVICE_POST_FUTURE_USER,
+        {
+          email: req.body.email,
+          headers: {
+            Authorization: req.header("Authorization"),
+          },
+        }
+      )
+      .then((response: AxiosResponse) => {
+        res.send(response.data);
+      })
+      .catch((error: AxiosError) => {
+        console.error("Error: +", error);
+        res.send(error.response.data as AxiosResponse);
+      })
+  });
+
+  // Valid future user to turn it into normal user with default logs (password + role + his email).
+  app.post(URL_API_POST_VALID_FUTURE_USER, (req: { header: (arg0: string) => any; params: (arg0: string) => any; }, res: { send: (arg0: AxiosResponse<any, any>) => void; }) => {
+    axios
+      .post(`${ENDPOINT_SERVICE_POST_VALID_FUTURE_USER}/${req.params("id")}`,
+        {
+          headers: {
+            Authorization: req.header("Authorization"),
+          },
+        }
+      )
+      .then((response: AxiosResponse) => {
+        res.send(response.data);
+      })
+      .catch((error: AxiosError) => {
+        console.error("Error: +", error);
+        res.send(error.response.data as AxiosResponse);
+      })
   });
 
   /* DELETE */
