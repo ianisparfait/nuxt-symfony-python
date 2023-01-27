@@ -1,10 +1,10 @@
 import axios, { AxiosError, AxiosResponse } from "axios";
-import { endPointServiceUserLogin } from "../endpoints";
+import { ENDPOINT_SERVICE_Login } from "../endpoints";
 
 const Auth = async (email: string, password: string): Promise<any> => {
   return new Promise((resolve) => {
     axios
-      .post(endPointServiceUserLogin,{ email, password },
+      .post(ENDPOINT_SERVICE_Login,{ email, password },
         {headers: {"Content-Type": "application/json"}}
       )
       .then((response: AxiosResponse) => {

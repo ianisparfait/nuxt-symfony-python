@@ -1,21 +1,21 @@
 /** Server URL */
-export const urlApi = "/api";
-export const urlApiUser = `${urlApi}/.back`;
-export const urlApiUserLogin = `${urlApiUser}/login`;
-export const urlApiUserInfo = `${urlApiUser}/user`;
-export const urlApiAdminInfo = `${urlApiUser}/admin`;
-export const urlApiCheckRole = `${urlApiUser}/checkRole`;
+export const URL_API = "/api";
+export const URL_API_BACK = `${URL_API}/.back`;
+export const URL_API_UserLogin = `${URL_API_BACK}/login`;
+export const URL_API_UserInfo = `${URL_API_BACK}/user`;
+export const URL_API_AdminInfo = `${URL_API_BACK}/admin`;
+export const URL_API_CheckRole = `${URL_API_BACK}/checkRole`;
 
 /** Service Back */
-export const urlServerServiceUser = "http://nginx/api";
-export const endPointServiceUserHello = `${urlServerServiceUser}/hello`;
-export const endPointServiceUserLogin = `${urlServerServiceUser}/login`;
-export const endPointServiceUserInfo = `${urlServerServiceUser}/user`;
-export const endPointServiceUserAdminInfo = `${urlServerServiceUser}/admin`;
-export const endPointServiceUserCheckRole = `${endPointServiceUserInfo}/check/role`;
+export const URL_SERVICE = "http://nginx/api";
+export const ENDPOINT_SERVICE_HELLO = `${URL_SERVICE}/hello`;
+export const ENDPOINT_SERVICE_Login = `${URL_SERVICE}/login`;
+export const ENDPOINT_SERVICE_UserInfo = `${URL_SERVICE}/user`;
+export const ENDPOINT_SERVICE_AdminInfo = `${URL_SERVICE}/admin`;
+export const ENDPOINT_SERVICE_USER_CheckRole = `${URL_SERVICE}/check/role`;
 
 export const urlsAcceptedWithoutConnection = [
-  urlApi,
-  urlApiUser,
-  urlApiUserLogin,
+  URL_API,
+  URL_API_BACK,
+  URL_API_UserLogin,
 ];

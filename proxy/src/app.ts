@@ -4,7 +4,7 @@ import bodyParser from "body-parser";
 import middleware from "./middleware";
 
 import userService from "./services/user";
-import { urlApi } from "./endpoints";
+import { URL_API } from "./endpoints";
 const app = express();
 const port = 8000;
 const version = "v0";
@@ -16,7 +16,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(middleware());
 
-app.get(urlApi, (_, res): void => {
+app.get(URL_API, (_, res): void => {
   res.send(JSON.parse(`{"version": "${version}"}`));
 });
 
