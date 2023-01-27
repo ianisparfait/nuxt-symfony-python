@@ -4,7 +4,6 @@ import {
   Auth,
   User,
   Roles,
-  Admin,
 } from "./../auth";
 
 import {
