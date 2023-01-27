@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\FutureUser;
 use App\Repository\FutureUserRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -28,35 +29,23 @@ class AppController extends AbstractController
     }
 
     /**
-     * @Route("/register", name="app_register", methods={"POST"})
+     * @Route("/api/register", name="app_register", methods={"POST"})
      */
-    public function registerUser(): JsonResponse
+    public function registerUser(Request $request): JsonResponse
     {
         $data = json_decode($request->getContent(), true);
-        $u = $data["user"];
 
-        if (null !== $u) {
-            $newUser = new FutureUser();
+        $newUser = new FutureUser();
 
-            $newUser->setNom($u["name"] !== null ? $u["name"] : "");
-            $newUser->setPrenom($u["prenom"] !== null ? $u["prenom"] : "");
-            $newUser->setEmail($u["email"] !== null ? $u["email"] : "");
-            $newUser->setTelephone($u["telephone"] !== null ? $u["telephone"] : "");
-            $newUser->setNationalite($u["nationalite"] !== null ? $u["nationalite"] : "");
-            $newUser->setIsValid(false);
+        $newUser->setEmail($data["email"]);
+        $newUser->setIsValid(false);
 
-            $this->em->persist($newUser);
-            $this->em->flush();
-
-            return $this->json([
-                "code" => 200,
-                "message" => "New user added!",
-            ]);
-        }
+        $this->em->persist($newUser);
+        $this->em->flush();
 
         return $this->json([
-            "code" => 500,
-            "message" => "User undefined",
+            "code" => 200,
+            "message" => "New user added!",
         ]);
     }
 
@@ -77,7 +66,7 @@ class AppController extends AbstractController
         $this->passFutureUserToUser();
 
         return $this->json([
-            "status" => 200,
+            "code" => 200,
             "message" => "Futur user accepted with success!"
         ]);
     }

@@ -94,7 +94,7 @@ const Endpoints = (app: Express): void => {
       res.send(onfulfilled.data);
     })
     .catch((onrejected) => {
-      console.log(onrejected.response.data)
+      console.error(onrejected.response.data)
       res.send(onrejected.response.data);
     });
   });

@@ -15,7 +15,7 @@ const Roles = async (role: string, accessToken: string): Promise<any> => {
         resolve(response.data);
       })
       .catch((error: AxiosError) => {
-        console.log(error);
+        console.error(error);
       });
   });
 };
