@@ -3,7 +3,7 @@ import bodyParser from "body-parser";
 
 import middleware from "./middleware";
 
-import userService from "./services/user";
+import userService from "./services/router";
 import { URL_API } from "./endpoints";
 const app = express();
 const port = 8000;
