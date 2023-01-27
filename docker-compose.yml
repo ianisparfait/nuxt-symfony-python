@@ -3,11 +3,11 @@ services:
   # PHP service
   back:
     build: ./back
-    container_name: service-user
+    container_name: service-back
     working_dir: /var/www/
     volumes:
-      - ./user:/var/www
-      - ./user/vendor:/var/www/vendor
+      - ./back:/var/www
+      - ./back/vendor:/var/www/vendor
     networks:
       - app-network
 
@@ -54,7 +54,7 @@ services:
     image: nginx:alpine
     container_name: php-nginx
     volumes:
-      - ./user:/var/www
+      - ./back:/var/www
       - ./nginx/conf.d/:/etc/nginx/conf.d/
     networks:
       - app-network

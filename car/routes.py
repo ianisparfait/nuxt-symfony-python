@@ -4,17 +4,17 @@ import json
 
 def init_routes(app):
 
-    @app.route("/", methods=["GET"])
+    @app.route("/flask/", methods=["GET"])
     def hello():
         return jsonify({"Hello": "World"})
 
-    @app.route("/cars", methods=["GET"])
+    @app.route("/flask/cars", methods=["GET"])
     def get_cars():
         cars = Car.query.all()
         return jsonify([car for car in cars])
 
 
-    @app.route("/cars/<int:id>", methods=["GET"])
+    @app.route("/flask/cars/<int:id>", methods=["GET"])
     def get_car(id):
         car = Car.query.get(id)
         if car is None:
@@ -22,7 +22,7 @@ def init_routes(app):
         return jsonify(car)
 
 
-    @app.route("/cars/<int:id>", methods=["DELETE"])
+    @app.route("/flask/cars/<int:id>", methods=["DELETE"])
     def delete_car(id):
         car = Car.query.get(id)
         if car is None:
@@ -32,7 +32,7 @@ def init_routes(app):
         return jsonify({'result': True})
 
 
-    @app.route('/cars', methods=['POST'])
+    @app.route('/flask/cars', methods=['POST'])
     def create_car():
         data = json.loads(request.data)
         car = Car(
@@ -45,7 +45,7 @@ def init_routes(app):
         return jsonify(car)
 
 
-    @app.route('/cars/<int:id>', methods=['PUT'])
+    @app.route('/flask/cars/<int:id>', methods=['PUT'])
     def update_car(id):
         if not request.json:
             abort(400)

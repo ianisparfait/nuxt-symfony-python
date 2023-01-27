@@ -1,10 +1,10 @@
 import axios, { AxiosError, AxiosResponse } from "axios";
-import { endPointServiceUserInfo } from "../endpoints";
+import { endPointServiceUserAdminInfo } from "../endpoints";
 
-const User = async (accessToken: string): Promise<any> => {
+const Admin = async (accessToken: string): Promise<any> => {
   return new Promise((resolve) => {
     axios
-      .get(endPointServiceUserInfo, {
+      .get(endPointServiceUserAdminInfo, {
         headers: {
           Authorization: accessToken,
         },
@@ -18,5 +18,5 @@ const User = async (accessToken: string): Promise<any> => {
   });
 };
 
-export default User;
-export { User };
+export default Admin;
+export { Admin };

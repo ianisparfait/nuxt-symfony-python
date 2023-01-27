@@ -1,0 +1,30 @@
+API requests:
+
+$base_url = http://localhost:8000/api
+
+pour envoyer le token du login:
+	Bearer {token}
+
+
+
+- /.back/login (login user) (POST)
+	(sauvegarder token en localStorage)
+	envoyer json: email, password
+
+- /.back/user (informations user: email+role) (GET)
+	envoyer le token du login
+
+- /.back/admin ()(GET)
+	envoyer le token du login
+
+- /.bak/checkRole (vérifie le role du user)(POST)
+	envoyer le token du login
+	envoyer un json pour check le role:
+
+{
+	"role": "USER_{level}"
+}
+
+
+
+(level = USER || ADMIN || SUPER_ADMIN)

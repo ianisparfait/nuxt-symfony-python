@@ -1,11 +1,10 @@
 import express from "express";
-import axios, { AxiosResponse } from "axios";
 import bodyParser from "body-parser";
 
 import middleware from "./middleware";
 
 import userService from "./services/user";
-
+import { urlApi } from "./endpoints";
 const app = express();
 const port = 8000;
 const version = "v0";
@@ -17,7 +16,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(middleware());
 
-app.get("/api", (_, res): void => {
+app.get(urlApi, (_, res): void => {
   res.send(JSON.parse(`{"version": "${version}"}`));
 });
 
