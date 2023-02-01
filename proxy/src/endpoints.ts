@@ -26,4 +26,5 @@ export const urlsAcceptedWithoutConnection = [
   URL_API,
   URL_API_BACK,
   URL_API_UserLogin,
+  URL_API_POST_FUTURE_USER,
 ];

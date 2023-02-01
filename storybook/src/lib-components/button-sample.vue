@@ -1,6 +1,16 @@
 <template>
-  <button v-if="isLink && isLink === false" :class="isWhite === true ? 'proj_btn normal white' : 'proj_btn'">{{title}}</button>
-  <a v-else :href="hrefLink" :class="isWhite === true ? 'proj_btn white normal' : 'proj_btn normal'">{{title}}</a>
+  <button
+    v-if="isLink && isLink === false"
+    class="proj_btn"
+    :class="{normal: isWhite, white: isWhite, loader: isLoader, loading: isLoading && !stopLoader}"
+    @click="isLoading = true"
+  >{{title}} <i class='bx bx-loader-alt'></i></button>
+  <a v-else
+    :href="hrefLink"
+    class="proj_btn normal"
+    :class="{white: isWhite, loader: isLoader, loading: isLoading && !stopLoader}"
+    @click="isLoading = true"
+  >{{title}} <i class='bx bx-loader-alt'></i></a>
 </template>
 
 <script lang="ts">
@@ -9,6 +19,11 @@ import Vue from 'vue';
 
 export default /*#__PURE__*/Vue.extend({
   name: 'ButtonSample',
+  data() {
+    return {
+      isLoading: false,
+    };
+  },
   props: {
     title: {
       type: String,
@@ -30,7 +45,26 @@ export default /*#__PURE__*/Vue.extend({
       type: Boolean,
       required: true,
     },
+    isLoader: {
+      type: Boolean,
+      required: false,
+      default: false,
+    },
+    stopLoader: {
+      type: Boolean,
+      required: false,
+      default: false,
+    },
   },
+  // watch: {
+  //   isLoading: function (val: boolean) {
+  //     if (val) {
+  //       setTimeout((): void => {
+  //         this.isLoading = false;
+  //       }, 2000);
+  //     }
+  //   }
+  // }
 })
 </script>
 
@@ -131,6 +165,33 @@ export default /*#__PURE__*/Vue.extend({
     }
     &:hover {
       filter: contrast(1.7) brightness(0.9);
+    }
+    &.loader {
+      position: relative;
+      & i {
+        opacity: 0;
+        margin-left: -1em;
+        transition: 0.2s;
+      }
+      &.loading {
+        & i {
+          display: block;
+          opacity: 1;
+          margin-left: 0.6rem;
+          animation-name: loading;
+          animation-duration: 1s;
+          animation-iteration-count: infinite;
+          animation-timing-function: linear;
+        }
+        @keyframes loading {
+          0% {
+            transform: rotate(0deg);
+          }
+          100% {
+            transform: rotate(360deg);
+          }
+        }
+      }
     }
   }
 }

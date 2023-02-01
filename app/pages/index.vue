@@ -64,18 +64,21 @@
           :title="'Demander mon inscription'"
           :isLink="false"
           :isWhite="false"
-          :hrefLink="''"
           :isExternal="false"
+          :isLoader="true"
+          :stopLoader="stopLoader"
         />
       </div>
 
       <span style="color: var(--dangerColor);" v-if="errorMessage !== ''">{{errorMessage}}</span>
+      <span style="color: var(--okColor);" v-if="successMessage !== ''">{{successMessage}}</span>
     </div>
   </div>
 </template>
 
 <script lang="ts">
 import Vue from 'vue';
+import axios from "axios";
 
 import User from './../Classes/User';
 
@@ -92,8 +95,10 @@ export default Vue.extend({
     return {
       isMobile: false,
       errorMessage: "",
+      successMessage: "",
+      stopLoader: false,
       user: <User>{
-        id: Math.random(),
+        id: Math.round(Date.now()*10/52),
         name: "",
         firstname: "",
         email: "",
@@ -110,14 +115,28 @@ export default Vue.extend({
     }
   },
   mounted() {
-    this.$nextTick(() => {
+    this.$nextTick((): void => {
       this.isMobile = Math.min(window.screen.width, window.screen.height) < 768 || navigator.userAgent.indexOf("Mobi") > -1;
     });
   },
   methods: {
     validEmail(): void {
-      if (validateEmail(this.user["email"])) this.errorMessage = "Entrez une adresse email valide";
-      else this.errorMessage = "";
+      if (!validateEmail(this.user["email"])) this.errorMessage = "Entrez une adresse email valide";
+      else {
+        this.errorMessage = "";
+
+        const url = `http://localhost:8000/api/.back/future-user`;
+
+        axios.post(url, {email: this.user["email"]})
+          .then((response: any): void => {
+            this.successMessage = "Votre demande d'inscription a bien été prise en compte";
+            this.stopLoader = true;
+          })
+          .catch((error: any): void => {
+            this.errorMessage = "Oups, une erreur est survenue";
+            this.stopLoader = true;
+          });
+      }
     },
   }
 })

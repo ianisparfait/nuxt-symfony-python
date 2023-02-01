@@ -1,4 +1,5 @@
 import express from "express";
+import cors from "cors";
 import bodyParser from "body-parser";
 
 import middleware from "./middleware";
@@ -14,6 +15,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 // parse application/json
 app.use(bodyParser.json());
+app.use(cors());
 app.use(middleware());
 
 app.get(URL_API, (_, res): void => {
