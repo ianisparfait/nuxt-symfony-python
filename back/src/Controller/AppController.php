@@ -8,6 +8,7 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class AppController extends AbstractController
@@ -31,7 +32,7 @@ class AppController extends AbstractController
     /**
      * @Route("/api/register", name="app_register", methods={"POST"})
      */
-    public function registerUser(Request $request): JsonResponse
+    public function registerUser(Request $request): Response
     {
         $data = json_decode($request->getContent(), true);
 
@@ -52,7 +53,7 @@ class AppController extends AbstractController
     /**
      * @Route("/admin/register/valid-user/{id}", name="app_register_admin", methods={"POST"})
      */
-    public function registerUserAdmin(string $id): JsonResponse
+    public function registerUserAdmin(string $id): Response
     {
         $user = $this->getUser();
 
