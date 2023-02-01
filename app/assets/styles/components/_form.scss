@@ -27,7 +27,7 @@
       width: 100%;
       & .form_row_item {
         width: 100%;
-        & * {
+        & *:not(i) {
           width: 100%;
         }
       }

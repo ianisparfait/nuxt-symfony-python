@@ -22,3 +22,35 @@
     }
   }
 }
+
+.loader {
+  position: relative;
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  line-height: 10px;
+  & i {
+    opacity: 0;
+    margin-left: -1em;
+    transition: 0.2s;
+  }
+  &.loading {
+    & i {
+      display: block;
+      opacity: 1;
+      margin-left: 0.6rem;
+      animation-name: loading;
+      animation-duration: 1s;
+      animation-iteration-count: infinite;
+      animation-timing-function: linear;
+    }
+    @keyframes loading {
+      0% {
+        transform: rotate(0deg);
+      }
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+  }
+}
