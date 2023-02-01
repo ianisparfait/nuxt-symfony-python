@@ -6,7 +6,9 @@ import middleware from "./middleware";
 
 import userService from "./services/router";
 import { URL_API } from "./endpoints";
+
 const app = express();
+const expressListRoutes = require('express-list-endpoints');
 const port = 8000;
 const version = "v0";
 

@@ -23,6 +23,16 @@ import {
   ENDPOINT_SERVICE_GET_ALL_USER,
   URL_API_POST_VALID_FUTURE_USER,
   ENDPOINT_SERVICE_POST_VALID_FUTURE_USER,
+  URL_FLASK_GET_ALL,
+  ENDPOINT_SERVICE_GET_ALL_CARS,
+  URL_FLASK_GET_ONE,
+  ENDPOINT_SERVICE_GET_ONE_CAR,
+  URL_FLASK_DELETE_ONE,
+  ENDPOINT_SERVICE_DELETE_ONE_CAR,
+  URL_FLASK_CREATE_ONE,
+  ENDPOINT_SERVICE_CREATE_ONE_CAR,
+  URL_FLASK_UPDATE_ONE,
+  ENDPOINT_SERVICE_UPDATE_ONE_CAR,
 } from "./../endpoints";
 
 const Endpoints = (app: Express): void => {
@@ -73,6 +83,40 @@ const Endpoints = (app: Express): void => {
   app.get(URL_API_GET_ALL_USERS, (req: { header: (arg0: string) => any; }, res: { send: (arg0: AxiosResponse<any, any>) => void; }) => {
     axios
       .get(ENDPOINT_SERVICE_GET_ALL_USER, {
+        headers: {
+          Authorization: req.header("Authorization"),
+        },
+      })
+      .then((response: AxiosResponse): void => {
+        res.send(response.data);
+      })
+      .catch((error: AxiosError): void => {
+        console.error("Error: " + error);
+        res.send(error.response.data as AxiosResponse);
+      });
+  });
+
+  // List all cars
+  app.get(URL_FLASK_GET_ALL, (req: { header: (arg0: string) => any; }, res: { send: (arg0: AxiosResponse<any, any>) => void; }) => {
+    axios
+      .get(ENDPOINT_SERVICE_GET_ALL_CARS, {
+        headers: {
+          Authorization: req.header("Authorization"),
+        },
+      })
+      .then((response: AxiosResponse): void => {
+        res.send(response.data);
+      })
+      .catch((error: AxiosError): void => {
+        console.error("Error: " + error);
+        res.send(error.response.data as AxiosResponse);
+      });
+  });
+
+  // Get one car
+  app.get(URL_FLASK_GET_ONE, (req, res) => {
+    axios
+      .get(`${ENDPOINT_SERVICE_GET_ONE_CAR}/${req.params.id}`, {
         headers: {
           Authorization: req.header("Authorization"),
         },
@@ -148,11 +192,61 @@ const Endpoints = (app: Express): void => {
       .catch((error: AxiosError) => {
         console.error("Error: +", error);
         res.send(error.response.data as AxiosResponse);
-      })
+      });
+  });
+
+  // Create a new car
+  app.post(URL_FLASK_CREATE_ONE, (req, res) => {
+    axios.post(ENDPOINT_SERVICE_CREATE_ONE_CAR, {
+      price: req.body.price,
+      name: req.body.name,
+      image: req.body.image,
+      headers: {
+        Authorization: req.header("Authorization"),
+      },
+    })
+    .then((response: AxiosResponse): void => {
+      res.send(response.data);
+    })
+    .catch((error: AxiosError): void => {
+      console.log("Error: " + error);
+      res.send(error.response.data as AxiosResponse);
+    });
   });
 
   /* DELETE */
+  // Delete one car
+  app.delete(URL_FLASK_DELETE_ONE, (req, res) => {
+    axios.delete(`${ENDPOINT_SERVICE_DELETE_ONE_CAR}/${req.params.id}`, {
+      headers: {
+        Authorization: req.header("Authorization"),
+      },
+    })
+    .then((response: AxiosResponse): void => {
+      res.send(response.data);
+    })
+    .catch((error: AxiosError): void => {
+      console.log("Error: " + error);
+      res.send(error.response.data as AxiosResponse);
+    });
+  });
   /* PUT */
+  // Update one car
+  app.put(URL_FLASK_UPDATE_ONE, (req, res) => {
+    axios.put(`${ENDPOINT_SERVICE_UPDATE_ONE_CAR}/${req.params.id}`,{
+      ...req.body,
+      headers: {
+        Authorization: req.header("Authorization"),
+      },
+    })
+    .then((response: AxiosResponse): void => {
+      res.send(response.data);
+    })
+    .catch((error: AxiosError): void => {
+      console.log("Error: " + error);
+      res.send(error.response.data as AxiosResponse);
+    });
+  });
 };
 
 export default { Endpoints };
