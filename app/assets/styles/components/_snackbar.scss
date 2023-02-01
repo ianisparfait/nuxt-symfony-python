@@ -1,0 +1,142 @@
+.app_snackbar {
+  --baseHorizontal: 5vw;
+  --baseVertical: 4vh;
+  --ornamentColor: var(--mainColor);
+  position: fixed;
+  z-index: 99999;
+  border-radius: 5px;
+  padding: 15px 40px;
+  transition: 0.2s;
+  transform: translate(-50%, -50%);
+  &.isError {
+    --ornamentColor: hsl(0deg 76% 37%);
+    background: var(--dangerColor);
+    color: var(--whiteColor);
+  }
+  &.isSuccess {
+    --ornamentColor: var(--okColor-opacity);
+    background: var(--okColor);
+    color: var(--whiteColor);
+  }
+  &.ornament {
+    &::before {
+      content: "";
+      position: absolute;
+      background: var(--ornamentColor);
+    }
+    &.top {
+      &::before {
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 5px;
+        border-radius: 5px 5px 0px 0px;
+      }
+    }
+    &.bottom {
+      &::before {
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 5px;
+        border-radius: 0px 0px 5px 5px;
+      }
+    }
+    &.left {
+      &::before {
+        top: 0;
+        left: 0;
+        width: 5px;
+        height: 100%;
+        border-radius: 5px 0px 0px 5px;
+      }
+    }
+    &.right {
+      &::before {
+        top: 0;
+        right: 0;
+        width: 5px;
+        height: 100%;
+        border-radius: 0px 5px 5px 0px;
+      }
+    }
+  }
+  &.top-left {
+    left: var(--baseHorizontal);
+    top: var(--baseVertical);
+    animation-duration: 0.3s;
+    animation-name: slideFromTop;
+    animation-fill-mode: forwards;
+    animation-iteration-count: 1;
+  }
+  &.top-mid {
+    left: 50%;
+    top: var(--baseVertical);
+    animation-duration: 0.3s;
+    animation-name: slideFromTop;
+    animation-fill-mode: forwards;
+    animation-iteration-count: 1;
+  }
+  &.top-right {
+    right: 5vw;
+    top: var(--baseVertical);
+    animation-duration: 0.3s;
+    animation-name: slideFromTop;
+    animation-fill-mode: forwards;
+    animation-iteration-count: 1;
+  }
+  &.mid-left {
+    left: var(--baseHorizontal);
+    top: 50%;
+  }
+  &.mid-mid {
+    left: 50%;
+    top: 50%;
+  }
+  &.mid-right {
+    right: var(--baseHorizontal);
+    top: 50%;
+  }
+  &.bottom-left {
+    left: var(--baseHorizontal);
+    bottom: var(--baseVertical);
+    animation-duration: 0.3s;
+    animation-name: slideFromBottom;
+    animation-fill-mode: forwards;
+    animation-iteration-count: 1;
+  }
+  &.bottom-mid {
+    left: 50%;
+    bottom: var(--baseVertical);
+    animation-duration: 0.3s;
+    animation-name: slideFromBottom;
+    animation-fill-mode: forwards;
+    animation-iteration-count: 1;
+  }
+  &.bottom-right {
+    right: var(--baseHorizontal);
+    bottom: var(--baseVertical);
+    animation-duration: 0.3s;
+    animation-name: slideFromBottom;
+    animation-fill-mode: forwards;
+    animation-iteration-count: 1;
+  }
+
+  @keyframes slideFromTop {
+    0% {
+      transform: translateY(-100%) translateX(-50%);
+    }
+    100% {
+      transform: translateY(0) translateX(-50%);
+    }
+  }
+
+  @keyframes slideFromBottom {
+    0% {
+      transform: translateY(100%) translateX(-50%);
+    }
+    100% {
+      transform: translateY(0) translateX(-50%);
+    }
+  }
+}

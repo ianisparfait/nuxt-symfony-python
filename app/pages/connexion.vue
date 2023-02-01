@@ -43,7 +43,7 @@ import axios from "axios";
 import { validateEmail } from './../assets/typescript/utils';
 import { UserLogin } from './../Classes/User';
 
-import { getLocalStorage, setLocalStorage } from "./../utils/utils";
+import { getLocalStorage, setLocalStorage, setupLocalStorage } from "./../utils/utils";
 
 import ButtonSample from "storybook/src/lib-components/button-sample.vue";
 
@@ -108,6 +108,7 @@ export default Vue.extend({
         if (response.data.roles.indexOf("ROLE_SUPER_ADMIN") === -1 && response.data.roles.indexOf("ROLE_ADMIN") === -1) {
           this.$router.push({ name: errorRedirect });
         } else {
+          setupLocalStorage();
           setLocalStorage("accessToken", token);
           setLocalStorage("refreshToken", refreshToken);
           this.successMessage = "Vous êtes connecté, re-bonjour admin !";

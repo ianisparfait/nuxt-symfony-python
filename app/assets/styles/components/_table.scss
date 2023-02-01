@@ -1,0 +1,42 @@
+table {
+  width: 85vw;
+  margin: auto;
+  border-collapse: collapse;
+  margin-top: 85px;
+  & thead {
+    & tr {
+      & th {
+        font-weight: 650;
+        text-transform: capitalize;
+      }
+    }
+  }
+  & tbody {
+    & tr {
+      border-bottom: 1px solid #d5d5d5;
+      background: transparent;
+      transition: 0.2s;
+      &:hover {
+        background: #d5d5d5;
+      }
+      & td {
+        padding: 15px;
+        & .valid, & .non_valid {
+          padding: 3px 15px;
+          border-style: solid;
+          border-width: 1px;
+          border-radius: 1000px;
+          font-size: 11px;
+        }
+        & .valid {
+          border-color: #1a996a;
+          background: #28bb1f7a;
+        }
+        & .non_valid {
+          border-color: var(--dangerColor);
+          background: var(--dangerColor-opacity);
+        }
+      }
+    }
+  }
+}
