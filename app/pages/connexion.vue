@@ -107,6 +107,9 @@ export default Vue.extend({
       .then((response: any): void => {
         if (response.data.roles.indexOf("ROLE_SUPER_ADMIN") === -1 && response.data.roles.indexOf("ROLE_ADMIN") === -1) {
           this.$router.push({ name: errorRedirect });
+          setupLocalStorage();
+          setLocalStorage("accessToken", token);
+          setLocalStorage("refreshToken", refreshToken);
         } else {
           setupLocalStorage();
           setLocalStorage("accessToken", token);
