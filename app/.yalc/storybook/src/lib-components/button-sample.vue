@@ -1,14 +1,14 @@
 <template>
   <button
     v-if="isLink && isLink === false"
-    class="proj_btn"
-    :class="{normal: isWhite, white: isWhite, loader: isLoader, loading: isLoading && !stopLoader}"
+    class="proj_btn loader"
+    :class="{normal: isWhite, white: isWhite, loading: isLoading && !stopLoader}"
     @click="isLoading = true"
   >{{title}} <i class='bx bx-loader-alt'></i></button>
   <a v-else
     :href="hrefLink"
-    class="proj_btn normal"
-    :class="{white: isWhite, loader: isLoader, loading: isLoading && !stopLoader}"
+    class="proj_btn normal loader"
+    :class="{white: isWhite, loading: isLoading && !stopLoader}"
     @click="isLoading = true"
   >{{title}} <i class='bx bx-loader-alt'></i></a>
 </template>
@@ -56,15 +56,6 @@ export default /*#__PURE__*/Vue.extend({
       default: false,
     },
   },
-  // watch: {
-  //   isLoading: function (val: boolean) {
-  //     if (val) {
-  //       setTimeout((): void => {
-  //         this.isLoading = false;
-  //       }, 2000);
-  //     }
-  //   }
-  // }
 })
 </script>
 

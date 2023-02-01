@@ -121,7 +121,10 @@ export default Vue.extend({
   },
   methods: {
     validEmail(): void {
-      if (!validateEmail(this.user["email"])) this.errorMessage = "Entrez une adresse email valide";
+      if (!validateEmail(this.user["email"])) {
+        this.stopLoader = true;
+        this.errorMessage = "Entrez une adresse email valide";
+      }
       else {
         this.errorMessage = "";
 
