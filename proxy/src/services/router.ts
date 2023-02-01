@@ -133,9 +133,9 @@ const Endpoints = (app: Express): void => {
   });
 
   // Valid future user to turn it into normal user with default logs (password + role + his email).
-  app.post(URL_API_POST_VALID_FUTURE_USER, (req: { header: (arg0: string) => any; params: (arg0: string) => any; }, res: { send: (arg0: AxiosResponse<any, any>) => void; }) => {
+  app.post(URL_API_POST_VALID_FUTURE_USER, (req, res) => {
     axios
-      .post(`${ENDPOINT_SERVICE_POST_VALID_FUTURE_USER}/${req.params("id")}`,
+      .post(`${ENDPOINT_SERVICE_POST_VALID_FUTURE_USER}/${req.params.id}`,
         {
           headers: {
             Authorization: req.header("Authorization"),

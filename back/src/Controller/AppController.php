@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\User;
 use App\Entity\FutureUser;
 use App\Repository\FutureUserRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -10,15 +11,18 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 class AppController extends AbstractController
 {
     private EntityManagerInterface $em;
     private FutureUserRepository $futurUser_repo;
+    private UserPasswordHasherInterface $userPasswordHasher;
 
-    public function __construct(EntityManagerInterface $em, FutureUserRepository $futur_u_r) {
+    public function __construct(EntityManagerInterface $em, FutureUserRepository $futur_u_r, UserPasswordHasherInterface $userPasswordHasher) {
         $this->em = $em;
         $this->futurUser_repo = $futur_u_r;
+        $this->userPasswordHasher = $userPasswordHasher;
     }
 
     /**
@@ -51,20 +55,13 @@ class AppController extends AbstractController
     }
 
     /**
-     * @Route("/admin/register/valid-user/{id}", name="app_register_admin", methods={"POST"})
+     * @Route("/api/register/valid-user/{id}", name="app_valid_user", methods={"POST"})
      */
-    public function registerUserAdmin(string $id): Response
+    public function validUser($id): Response
     {
-        $user = $this->getUser();
+        $futurU = $this->futurUser_repo->findOneBy(["id" => $id]);
 
-        if ($user->getRoles()[0] !== 'ROLE_ADMIN') {
-            $response = new JsonResponse("Not an admin user", 400);
-            return $response->send();
-        }
-
-        $futurU = $this->futurUser_repo->findOneBy(["id", $id]);
-
-        $this->passFutureUserToUser();
+        $this->passFutureUserToUser($futurU);
 
         return $this->json([
             "code" => 200,
@@ -72,21 +69,25 @@ class AppController extends AbstractController
         ]);
     }
 
-    private function passFutureUserToUser(string $email, FutureUser $futurUser) {
+    private function passFutureUserToUser(FutureUser $futurUser) {
         $user = new User();
 
-        $user->setEmail($email);
+        $user->setEmail($futurUser->getEmail());
         $user->setRoles(["ROLE_USER"]);
 
         $plainTextPassword = $this->getParameter('defaultPassword');
-        $hasher = $this->password_hasher->hashPassword($user, $plainTextPassword);
-        $user->setPassword($hasher);
+        $user->setPassword(
+            $this->userPasswordHasher->hashPassword(
+                $user,
+                $plainTextPassword,
+            ),
+        );
 
         $futurUser->setIsValid(true);
 
         $this->em->persist($futurUser);
         $this->em->persist($user);
 
-        $this->flush();
+        $this->em->flush();
     }
 }
