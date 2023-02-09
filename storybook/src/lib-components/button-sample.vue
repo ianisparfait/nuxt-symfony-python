@@ -1,16 +1,16 @@
 <template>
   <a v-if="isLink !== false"
     :href="hrefLink"
-    class="proj_btn normal loader"
-    :class="{white: isWhite, loading: isLoading && !stopLoader}"
+    class="proj_btn normal"
+    :class="{white: isWhite, loading: isLoading && !stopLoader, loader: isLoader}"
     @click="isLoading = true"
-  >{{title}} <i class='bx bx-loader-alt'></i></a>
+  >{{title}} <i class='bx bx-loader-alt' v-if="isLoader"></i></a>
   <button
     v-else
-    class="proj_btn normal loader"
-    :class="{normal: isWhite, white: isWhite, loading: isLoading && !stopLoader}"
+    class="proj_btn normal"
+    :class="{normal: isWhite, white: isWhite, loading: isLoading && !stopLoader, loader: isLoader}"
     @click="isLoading = true"
-  >{{title}} <i class='bx bx-loader-alt'></i></button>
+  >{{title}} <i class='bx bx-loader-alt' v-if="isLoader"></i></button>
 </template>
 
 <script lang="ts">

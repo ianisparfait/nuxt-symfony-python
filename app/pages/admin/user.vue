@@ -51,12 +51,12 @@
 import Vue from 'vue';
 import axios from "axios";
 
-import { getLocalStorage } from '../utils/utils';
+import { getLocalStorage } from '../../utils/utils';
 
 import ButtonSample from "storybook/src/lib-components/button-sample.vue";
 
 export default Vue.extend({
-  name: "Admin",
+  name: "AdminUser",
   components: {
     ButtonSample,
   },
@@ -76,6 +76,7 @@ export default Vue.extend({
   },
   mounted() {
     this.getDatas();
+    console.log(this.$router);
   },
   watch: {
     snckbar: {

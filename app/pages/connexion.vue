@@ -132,7 +132,7 @@ export default Vue.extend({
 
       if (isUserConnected) {
         this.checking = true;
-        this.checkAdmin(getLocalStorage("accessToken"), getLocalStorage("refreshToken"), "index", "admin");
+        this.checkAdmin(getLocalStorage("accessToken"), getLocalStorage("refreshToken"), "index", "admin-user");
       }
     },
 
